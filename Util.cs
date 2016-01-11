@@ -29,9 +29,9 @@ public partial class StoredProcedures
     /// <param name="_webUrl"></param>
     /// <param name="_returnVal"></param>
     [Microsoft.SqlServer.Server.SqlProcedure]    
-    public static void PR_DDP_WebRequest(SqlString _webUrl, out SqlInt32 _returnVal)
+    public static void PR_DDP_WebRequest(SqlString _webUrl, out SqlString _returnVal)
     {
-        SqlInt32 objReturn = 0;
+        SqlString objReturn = string.Empty;
 
         if (!_webUrl.IsNull)
         {
@@ -49,7 +49,7 @@ public partial class StoredProcedures
                 response = (HttpWebResponse)request.GetResponse();
                 stream = response.GetResponseStream();
                 streamReader = new StreamReader(stream);
-                objReturn = Convert.ToInt32(streamReader.ReadToEnd());
+                objReturn = streamReader.ReadToEnd();
 
                 response.Close();
                 stream.Dispose();
@@ -59,13 +59,10 @@ public partial class StoredProcedures
             catch (Exception ex)
             {
                 SqlContext.Pipe.Send(ex.Message.ToString());
-                objReturn = 0;
+               
             }
         }
-        else
-        {
-            objReturn = 0;
-        }
+       
 
         _returnVal = objReturn;
     }
