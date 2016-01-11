@@ -1,0 +1,9 @@
+C:\Users\Marcos\Documents\projetos\SqlServerExtension\SqlServerExtension\bin\Debug\SqlServerExtension.dacpac
+C:\Users\Marcos\Documents\projetos\SqlServerExtension\SqlServerExtension\bin\Debug\SqlServerExtension.dll
+C:\Users\Marcos\Documents\projetos\SqlServerExtension\SqlServerExtension\bin\Debug\SqlServerExtension.pdb
+C:\Users\Marcos\Documents\projetos\SqlServerExtension\SqlServerExtension\obj\Debug\Model.xml
+C:\Users\Marcos\Documents\projetos\SqlServerExtension\SqlServerExtension\obj\Debug\refactor.xml
+C:\Users\Marcos\Documents\projetos\SqlServerExtension\SqlServerExtension\obj\Debug\postdeploy.sql
+C:\Users\Marcos\Documents\projetos\SqlServerExtension\SqlServerExtension\obj\Debug\predeploy.sql
+C:\Users\Marcos\Documents\projetos\SqlServerExtension\SqlServerExtension\obj\Debug\SqlServerExtension.dll
+C:\Users\Marcos\Documents\projetos\SqlServerExtension\SqlServerExtension\obj\Debug\SqlServerExtension.pdb
