@@ -68,5 +68,6 @@
     <Compile Include="ConvertType.cs" />
     <Compile Include="CustomFormat.cs" />
     <Compile Include="Util.cs" />
+    <Compile Include="FileManager.cs" />
   </ItemGroup>
 </Project>
