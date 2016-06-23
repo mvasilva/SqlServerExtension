@@ -29,7 +29,7 @@ public partial class StoredProcedures
     /// <param name="_webUrl"></param>
     /// <param name="_returnVal"></param>
     [Microsoft.SqlServer.Server.SqlProcedure]    
-    public static void PR_DDP_WebRequest(SqlString _webUrl, out SqlString _returnVal)
+    public static void PR_GER_WebRequest_GET(SqlString _webUrl, out SqlString _returnVal)
     {
         SqlString objReturn = string.Empty;
 
@@ -65,6 +65,59 @@ public partial class StoredProcedures
        
 
         _returnVal = objReturn;
+    }
+
+
+    [Microsoft.SqlServer.Server.SqlProcedure]
+    public static void PR_GER_WebRequest_POST(SqlString _webUrl, SqlString _data, out SqlString _returnVal)
+    {
+
+        _returnVal = "Erro";
+        if (!_webUrl.IsNull)
+        {
+            try
+            {
+                HttpWebRequest request = null;
+                HttpWebResponse response = null;
+                Stream stream = null;
+                StreamReader streamReader = null;
+
+                request = (HttpWebRequest)WebRequest.Create(_webUrl.Value);
+                request.Method = "POST";
+                request.ContentType = "application/json";
+
+
+                using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+                {
+                    streamWriter.Write(_data.IsNull ? string.Empty : _data.Value);
+                    streamWriter.Flush();
+                    streamWriter.Close();
+                }
+
+
+
+                response = (HttpWebResponse)request.GetResponse();
+                stream = response.GetResponseStream();
+                streamReader = new StreamReader(stream);
+                _returnVal = streamReader.ReadToEnd();
+
+                response.Close();
+                stream.Dispose();
+                streamReader.Dispose();
+            }
+
+            catch (Exception ex)
+            {
+                SqlContext.Pipe.Send(ex.Message.ToString());
+
+            }
+        }
+        else
+        {
+
+        }
+
+
     }
 
 }
